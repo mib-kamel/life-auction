@@ -1,0 +1,21 @@
+.container {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 20px;
+}
+
+@media screen and (max-width: 1092px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .col-container {
+        width: 100%;
+    }
+
+    .logo {
+        margin-left: 20px;
+    }
+}

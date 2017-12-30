@@ -1,0 +1,20 @@
+<div class="header">
+  <h1>Life Auction</h1>
+</div>
+
+<div class="container">
+
+  <div class="col-container">
+    <app-stats></app-stats>
+  </div>
+
+  <div class="col-container">
+    <app-inventory (showNotification)="showNotification($event)"></app-inventory>
+  </div>
+
+  <div class="col-container">
+    <app-auction (showNotification)="showNotification($event)"></app-auction>
+  </div>
+
+  <app-notifications #allNotificationsContainer></app-notifications>
+</div>

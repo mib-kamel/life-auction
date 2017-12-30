@@ -1,0 +1,28 @@
+<div class="panel">
+  <h2 class="panel-header">Inventory</h2>
+
+  <div class="panel-content">
+    <ul class="inv">
+      <li class="inv-item" *ngFor="let item of userInv; let i = index">
+        <div class="img-container" *ngIf="!item.inPreSell">
+          <img src="/assets/imgs/items/{{item.itemID.img}}" alt="">
+          <div class="inv-item-type-text">{{item.itemID.item_name}}</div>
+        </div>
+        <div class="quantity-container" *ngIf="!item.inPreSell">
+          <label>Quantity</label>
+          <label>{{item.quantity}}</label>
+        </div>
+        <div class="item-auction-container" *ngIf="!item.inPreSell">
+          <button (click)="auctionClick(item)">Auction</button>
+        </div>
+        <div class="item-in-pre-sell" *ngIf="item.inPreSell">
+          <input [(ngModel)]="item.toSellQuan" placeholder="Quantity">
+          <input [(ngModel)]="item.toSellPrice" placeholder="Price">
+          <button (click)="cancelPreSell(item)">cancel</button>
+          <button (click)="startSell(item)">Start</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>

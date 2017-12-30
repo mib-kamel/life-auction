@@ -1,0 +1,39 @@
+<div class="panel">
+  <h2 class="panel-header">Current Auction</h2>
+
+  <div class="panel-content" *ngIf="!auction">
+    No auction at the moment.
+  </div>
+  <div class="panel-content current-auction-panel" *ngIf="auction">
+    <div>
+      <span>Seller:</span> {{auction.sellerName}}.
+    </div>
+    <div class="auction-item">
+      <ul class="inv">
+        <li class="inv-item">
+          <div class="img-container">
+            <img src="/assets/imgs/items/{{auction.itemImage}}" alt="">
+            <div class="inv-item-type-text">{{auction.itemName}}</div>
+          </div>
+          <div class="quantity-container">
+            <label>Quantity</label>
+            <label>{{auction.quantity}}</label>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="auction-best-price">
+      Best Price:
+      <span>{{auction.bestPrice}}</span> coins.
+    </div>
+    <div class="auction-time-left">
+      Time left:
+      <span>{{auction.remaining}}</span> seconds.
+    </div>
+    <div class="auction-place-bid">
+      <input type="number" [(ngModel)]="bidValue">
+      <button (click)="bidClick($event)">Place Bid</button>
+    </div>
+  </div>
+
+</div>
