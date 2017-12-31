@@ -38,9 +38,9 @@ module.exports.routes = {
   /**
    * To send all the other requests to the home page
    */
-  '/*': {
-    target: '/',
-    skipRegex: /^\/api\/.*$/,
-    skipAssets: true
-  },
+  // '/*': {
+  //   target: '/',
+  //   skipRegex: /^\/api\/.*$/,
+  //   skipAssets: true
+  // },
 };
