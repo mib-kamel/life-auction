@@ -33,6 +33,9 @@ module.exports = {
         bestPrice: {
             type: 'integer'
         },
+        minPrice: {
+            type: 'integer'
+        },
         isLife: {
             type: 'integer'
         },

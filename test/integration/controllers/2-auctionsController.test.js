@@ -17,14 +17,14 @@ describe('Auction action tests.', function () {
         UserItem.destroy().exec((err, res) => { });
     });
 
-    it('Should return no life auction where there is not.', function (done) {
+    it('Should return no live auction where there is not.', function (done) {
         request(sails.hooks.http.app)
             .post('/api/auction/subscribe')
             .send({})
             .expect(200)
             .end(function (err, res) {
                 if (err) return done(err);
-                expect(res.body.message).to.equals("No life auctions");
+                expect(res.body.message).to.equals("No live auctions");
                 done();
             });
     });

@@ -17,7 +17,7 @@
         </div>
         <div class="item-in-pre-sell" *ngIf="item.inPreSell">
           <input [(ngModel)]="item.toSellQuan" placeholder="Quantity">
-          <input [(ngModel)]="item.toSellPrice" placeholder="Price">
+          <input [(ngModel)]="item.toSellPrice" placeholder="Min Price">
           <button (click)="cancelPreSell(item)">cancel</button>
           <button (click)="startSell(item)">Start</button>
         </div>

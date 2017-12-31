@@ -232,7 +232,11 @@ button:hover {
 }
 
 .inv-item .item-in-pre-sell input {
-    max-width: 45px;
+    /* max-width: 45px; */
+    width: 50px;
+    font-size: .9em;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 .current-auction-panel {

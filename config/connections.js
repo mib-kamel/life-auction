@@ -1,6 +1,9 @@
 module.exports.connections = {
   localDiskDb: {
     adapter: 'sails-disk'
+  }, 
+  testDiskDb: {
+    adapter: 'sails-disk'
   },
   mysql: {
     adapter: 'sails-mysql',

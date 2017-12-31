@@ -9,7 +9,7 @@ before(function (done) {
 
     sails.lift({
         models: {
-            connection: 'localDiskDb',
+            connection: 'testDiskDb',
             migrate: 'drop'
         }
     }, function (err, server) {

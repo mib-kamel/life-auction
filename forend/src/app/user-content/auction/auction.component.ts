@@ -57,7 +57,7 @@ export class AuctionComponent implements OnInit {
         }
       } else {
         if (event.data.type === 1) {
-          self.auction.bestPrice = event.data.auction.bsetPrice;
+          self.auction.bestPrice = event.data.auction.bestPrice;
           self.auction.remaining = event.data.auction.remaining;
           self.forceUpdate();
         }
@@ -79,10 +79,17 @@ export class AuctionComponent implements OnInit {
   bidClick($event) {
     const user = this.currentUserService.getUser().user;
     if (!this.bidValue || this.auction.bestPrice >= this.bidValue) {
-      this.showNotification.emit({
-        message: 'You must enter a bid value more than the best price.',
-        type: 'error'
-      });
+      if (this.auction.bestPrice < this.auction.minPrice) {
+        this.showNotification.emit({
+          message: 'You must enter a bid value more than or equal the min price.',
+          type: 'error'
+        });
+      } else {
+        this.showNotification.emit({
+          message: 'You must enter a bid value more than winning price.',
+          type: 'error'
+        });
+      }
     } else if (user.coins < this.bidValue) {
       this.showNotification.emit({
         message: `You only have ${user.coins} coins.`,

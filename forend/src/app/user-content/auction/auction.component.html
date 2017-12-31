@@ -22,8 +22,12 @@
         </li>
       </ul>
     </div>
-    <div class="auction-best-price">
-      Best Price:
+    <div class="auction-best-price" *ngIf="auction.bestPrice < auction.minPrice">
+      Minimum Price:
+      <span>{{auction.minPrice}}</span> coins, Winning Bid: -.
+    </div>
+    <div class="auction-best-price" *ngIf="auction.bestPrice >= auction.minPrice">
+      Winning Bid:
       <span>{{auction.bestPrice}}</span> coins.
     </div>
     <div class="auction-time-left">

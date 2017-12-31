@@ -25,7 +25,7 @@ module.exports = {
         }
 
         /**
-         * Start the auctions interval to get the life auction status.
+         * Start the auctions interval to get the live auction status.
          */
         _auctionInterval();
 
@@ -33,7 +33,7 @@ module.exports = {
     },
 
     /**
-     * To subscribe in the life auction.
+     * To subscribe in the live auction.
      * 
      * @param {*make} req 
      * @param {*} res 
@@ -50,7 +50,7 @@ module.exports = {
                 auction: lifeAuction
             });
         } else {
-            res.send({ message: "No life auctions" });
+            res.send({ message: "No live auctions" });
         }
     },
 
@@ -82,6 +82,7 @@ module.exports = {
             quantity: Number(req.body.quantity),
             /** Start price - 1 to force the winner to put at least the start price */
             bestPrice: Number(req.body.startPrice) - 1,
+            minPrice: Number(req.body.startPrice),
             isLife: 2,
             remaining: 90,
             winnerID: req.body.winnerID,
@@ -93,7 +94,7 @@ module.exports = {
         }, { quantity: Number(toSellItem.quantity) - Number(req.body.quantity) });
 
         /**
-         * Immediately start when there is no life auctions.
+         * Immediately start when there is no live auctions.
          */
         if (immediatelyStart === 1) {
             res.send({
@@ -102,7 +103,7 @@ module.exports = {
             });
         } else {
             /**
-             * put in the queue if there is another life auction.
+             * put in the queue if there is another live auction.
              */
             res.send({
                 message: `Selling ${Number(req.body.quantity)} of ${req.body.itemName} for ${req.body.startPrice} coins or more is in the queue.`,
@@ -139,7 +140,7 @@ module.exports = {
 let intervaleStarted = false;
 
 /**
- * Start the auctions interval to get the life auction status.
+ * Start the auctions interval to get the live auction status.
  * 
  * Singlton throught the current instance.
  */
@@ -166,9 +167,9 @@ async function _auctionInterval() {
                 Auctions.publishUpdate(lifeAuction.id, {
                     flag: false,
                     type: 1,
-                    message: "Life Auction updated",
+                    message: "Live Auction updated",
                     auction: {
-                        bsetPrice: lifeAuction.bestPrice,
+                        bestPrice: lifeAuction.bestPrice,
                         remaining: lifeAuction.remaining
                     }
                 });
@@ -215,7 +216,7 @@ async function _auctionInterval() {
                 Auctions.publishUpdate(flagAuction.id, {
                     flag: true,
                     type: 2,
-                    message: `Current life auction has ended.`
+                    message: `Current live auction has ended.`
                 });
             } else if (!lifeAuction) {
                 const queuedAuctions = await Auctions.find({ isLife: 2 });
