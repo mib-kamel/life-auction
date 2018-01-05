@@ -57,4 +57,8 @@ try {
 
 
 // Start server
-sails.lift(rc('sails'));
+try {
+  sails.lift(rc('sails'));
+} catch (e) {
+  console.dir(e);
+}
